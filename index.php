@@ -86,7 +86,7 @@
             <p>Electronics</p>
         </div>
         <div class="category">
-            <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/electronics.svg">
+            <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/tv.svg">
             <p>Applications</p>
         </div>
         <div class="category">
