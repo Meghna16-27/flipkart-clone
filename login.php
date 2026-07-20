@@ -15,14 +15,14 @@
     ?>
             <div style="position: absolute; top: 20px; background: #4caf50; color: white; padding: 10px 20px; border-radius: 4px;">
                 Data saved successfully!
-                <a href="index.php" style="color: white; margin-left: 15px;  font-weight: bold;">Return to Index</a>
+                <a href="index.php" style="color: white; margin-left: 15px;  font-weight: bold;">Return to Home</a>
             </div>
     <?php 
         } elseif ($_GET['status'] == 'loggedin') { 
     ?>
             <div style="position: absolute; top: 20px; background: #4caf50; color: white; padding: 10px 20px; border-radius: 4px;">
                 Logged in successfully!
-                <a href="index.php" style="color: white; margin-left: 15px;  font-weight: bold;">Return to Index</a>
+                <a href="index.php" style="color: white; margin-left: 15px;  font-weight: bold;">Return to Home</a>
             </div>
     <?php 
     } elseif ($_GET['status'] == 'invalid_credentials') { 
