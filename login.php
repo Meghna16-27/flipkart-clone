@@ -59,7 +59,7 @@ if (isset($_GET['status'])) {
                 <button type="submit" name="submit" class="submit-btn">Login</button>
             </div>
 
-            <a href="index.php" class="footer-link">New to Flipkart? Create an account</a>
+            <!-- <a href="index.php" class="footer-link">New to Flipkart? Create an account</a> -->
         </form>
     </div>
 
