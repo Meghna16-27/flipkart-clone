@@ -90,6 +90,7 @@ img{
 }
 .search-box input{
     border:none;
+    outline: none;
     width:100%;
     font-size:1rem;
 }

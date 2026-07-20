@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,24 +9,30 @@
    <link rel="stylesheet" href="loginpage.css">
 </head>
 <body>
-<?php 
-if (isset($_GET['status'])) {
-    if ($_GET['status'] == 'success') { 
-?>
-        <div style="position: absolute; top: 20px; background: #4caf50; color: white; padding: 10px 20px; border-radius: 4px;">
-            Data saved successfully!
-            <a href="index.php" style="color: white; margin-left: 15px;  font-weight: bold;">Return to Index</a>
-        </div>
-<?php 
-    } elseif ($_GET['status'] == 'loggedin') { 
-?>
-        <div style="position: absolute; top: 20px; background: #4caf50; color: white; padding: 10px 20px; border-radius: 4px;">
-            Logged in successfully!
-            <a href="index.php" style="color: white; margin-left: 15px;  font-weight: bold;">Return to Index</a>
-        </div>
-<?php 
+    <?php 
+    if (isset($_GET['status'])) {
+        if ($_GET['status'] == 'success') { 
+    ?>
+            <div style="position: absolute; top: 20px; background: #4caf50; color: white; padding: 10px 20px; border-radius: 4px;">
+                Data saved successfully!
+                <a href="index.php" style="color: white; margin-left: 15px;  font-weight: bold;">Return to Index</a>
+            </div>
+    <?php 
+        } elseif ($_GET['status'] == 'loggedin') { 
+    ?>
+            <div style="position: absolute; top: 20px; background: #4caf50; color: white; padding: 10px 20px; border-radius: 4px;">
+                Logged in successfully!
+                <a href="index.php" style="color: white; margin-left: 15px;  font-weight: bold;">Return to Index</a>
+            </div>
+    <?php 
+    } elseif ($_GET['status'] == 'invalid_credentials') { 
+    ?>
+            <div style="position: absolute; top: 20px; background: #f44336; color: white; padding: 10px 20px; border-radius: 4px;">
+                Wrong email or password (invalid credentials). Try again.
+            </div>
+    <?php 
+        } 
     } 
-} 
 ?>
 
 
