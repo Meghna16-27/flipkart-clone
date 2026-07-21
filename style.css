@@ -36,7 +36,6 @@ img{
 .whole{
     display:flex;
     gap:12px;
-    width:100%;
 }
 .btn{
     padding:10px 24px;
@@ -50,6 +49,7 @@ img{
     justify-content: center;
     gap:8px;
     font-weight:700;
+    
 }
 .btn img{
     width:30px;
@@ -277,6 +277,9 @@ img{
     }
 }
 @media (max-width:680px){
+    .whole{
+        width:100%;
+    }
     .btn{
        width: 50%;
         padding:10px 14px;
