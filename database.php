@@ -7,7 +7,6 @@ class UserManager {
     private $conn;
 
     public function __construct() {
-        // Start the session so we can track logged-in state across pages
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
@@ -23,7 +22,7 @@ class UserManager {
     function test_input($data) {
         $data = trim($data);
         $data = stripslashes($data);
-        return $data;
+        return htmlspecialchars($data);
     }
 
     public function checkValidate($email) {
@@ -42,7 +41,6 @@ class UserManager {
         return $exists;
     }
 
-    // UPDATED: Now fetches 'id' and 'password' to store in session upon success
     public function checkUser($email, $password) {
         $query = mysqli_prepare($this->conn, "SELECT id, password FROM users WHERE email = ? LIMIT 1");
         mysqli_stmt_bind_param($query, "s", $email);
@@ -53,7 +51,6 @@ class UserManager {
         if ($user = mysqli_fetch_assoc($result)) {
             mysqli_stmt_close($query);
             if (password_verify($password, $user['password'])) {
-                // Save user info into session
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['user_email'] = $email;
                 return true;
@@ -65,7 +62,6 @@ class UserManager {
         return false; 
     }
 
-    // UPDATED: Saves newly registered user's ID to session
     public function insertUser($email, $password) {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
@@ -83,17 +79,34 @@ class UserManager {
         return $result;
     }
 
-    public function handleFormSubmission() {
+    public function handleRequests() {
+        // Handle AJAX Email Check Request
+        if (isset($_POST['action']) && $_POST['action'] === 'check_email') {
+            header('Content-Type: application/json');
+            $email = $this->test_input($_POST['email'] ?? '');
+
+            if (!$this->checkValidate($email)) {
+                echo json_encode(['success' => false, 'message' => 'Invalid Email']);
+                exit();
+            }
+
+            $exists = $this->checkEmailExists($email);
+            echo json_encode(['success' => true, 'exists' => $exists]);
+            exit();
+        }
+
+        // Handle Main Form Submission
         if (isset($_POST['submit'])) {
             $email = $this->test_input($_POST['email']);
             $password = trim($_POST['password']);
+            $action_type = isset($_POST['action_type']) ? $_POST['action_type'] : 'login';
 
             if (empty($password) || !$this->checkValidate($email)) {
                 header("Location: login.php?status=invalid_credentials");
                 exit();
             }
 
-            if ($this->checkEmailExists($email)) {
+            if ($action_type === 'login') {
                 if ($this->checkUser($email, $password)) {
                     header("Location: index.php?status=loggedin");
                     exit();
@@ -101,7 +114,12 @@ class UserManager {
                     header("Location: login.php?status=invalid_credentials");
                     exit();
                 }
-            } else {
+            } elseif ($action_type === 'signup') {
+                if ($this->checkEmailExists($email)) {
+                    header("Location: login.php?status=email_taken");
+                    exit();
+                }
+
                 if ($this->insertUser($email, $password)) {
                     header("Location: index.php?status=success");
                     exit();
@@ -121,5 +139,5 @@ class UserManager {
 }
 
 $userManager = new UserManager();
-$userManager->handleFormSubmission();
+$userManager->handleRequests();
 ?>

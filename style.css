@@ -125,14 +125,15 @@ img{
 .dropdown-content {
     display: none;
     position: absolute;
-    top: 100%;
     right: 0;
     background-color: #ffffff;
     min-width: 160px;
+    width:200px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
-    border-radius: 4px;
+    border-radius: 10px;
     z-index: 1000;
     overflow: hidden;
+    margin-top: 10px;
 }
 
 /* Links inside the dropdown */
@@ -142,8 +143,9 @@ img{
     text-decoration: none;
     display: flex;
     align-items: center;
+    margin-top:10px;
     gap: 10px;
-    font-size: 14px;
+    font-size: 16px;
     transition: background-color 0.2s ease;
 }
 

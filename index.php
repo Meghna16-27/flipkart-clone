@@ -45,7 +45,7 @@ if (session_status() === PHP_SESSION_NONE) {
                         <?php if (isset($_SESSION['user_id'])): ?>
                            <div class="user-dropdown">
                             <a href="#" class="login" style="text-decoration: none; color: inherit;">
-                                <i class="fa fa-user-o"></i>
+                                <i class="fa fa-user-circle"></i>
                                 <span>User</span>
                                 <i class="fa fa-angle-down"></i>
                             </a>
@@ -55,13 +55,19 @@ if (session_status() === PHP_SESSION_NONE) {
                                 <a href="profile.php"><i class="fa fa-user-circle"></i> My Profile</a>
                                 <a href="orders.php"><i class="fa fa-shopping-bag"></i> Orders</a>
                                 <a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a>
+                                 <a href="profile.php"><i class="fa fa-user-circle"></i> My Profile</a>
+                                <a href="orders.php"><i class="fa fa-shopping-bag"></i> Orders</a>
+                                <a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a>
+                                 <a href="profile.php"><i class="fa fa-user-circle"></i> My Profile</a>
+                                <a href="orders.php"><i class="fa fa-shopping-bag"></i> Orders</a>
+                                <a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a>
                             </div>
                         </div>
                           
 
                         <?php else: ?>
                             <a href="login.php" class="login" style="text-decoration: none; color: inherit;">
-                                <i class="fa fa-user-o"></i>
+                               <i class="fa fa-user-circle"></i>
                                 <span>Login</span>
                                 <i class="fa fa-angle-down"></i>
                             </a>
