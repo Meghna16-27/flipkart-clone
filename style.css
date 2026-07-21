@@ -136,7 +136,7 @@ img{
     width: 0;
     height: 0;
 }
-
+/* //hideicon annimation */
 .outline.hide-icons .category img{
     opacity: 0;
     width: 0;
@@ -147,6 +147,7 @@ img{
 
 .outline.hide-icons .category{
     gap: 0;
+  
 }
 
 .category{
@@ -179,12 +180,13 @@ img{
     line-height:1.2;
 }
 .content-scroll{
-    max-height: calc(100vh - 320px);
-    overflow-y:auto;
+    max-height: calc(100vh - 320px); /*limit height to visible viewport minus header space*?*/
+    overflow-y:auto;/* Enables vertical scrolling ONLY inside this div */
     padding-right: 4px;
     scroll-behavior: smooth;
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* Internet Explorer 10+ */
+  
 }
 
 .content-scroll::-webkit-scrollbar {

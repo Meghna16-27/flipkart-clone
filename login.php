@@ -7,6 +7,7 @@
     <title>Flipkart - Login</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
    <link rel="stylesheet" href="loginpage.css">
+
 </head>
 <body>
     <?php 
@@ -34,9 +35,6 @@
         } 
     } 
 ?>
-
-
-
     <div class="login-container">
     
         <div class="info-panel">
@@ -45,7 +43,7 @@
                 <p>Get access to your Orders, Wishlist and Recommendations</p>
             </div>
            
-            <i class="fa fa-shopping-bag" style="font-size: 80px; opacity: 0.2; align-self: center;"></i>
+            <img src="assests/background.png" style="font-size: 80px; opacity: 0.; align-self: center;">
         </div>
 
 
@@ -66,7 +64,11 @@
                 <button type="submit" name="submit" class="submit-btn">Login</button>
             </div>
 
-            <!-- <a href="index.php" class="footer-link">New to Flipkart? Create an account</a> -->
+            <div class="footer">
+            <a href="index.php" class="footer-link">New to Flipkart? Create an account</a>
+        </div>
+
+          
         </form>
     </div>
 
