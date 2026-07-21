@@ -82,6 +82,7 @@ class UserManager {
                     header("Location: login.php?status=loggedin");
                     exit();
                 } else {
+                    //The header() function sends an HTTP header to the browser before any HTML output is sent.(hhtp header is a extra )
                     header("Location: login.php?status=invalid_credentials");// the header tells the browser which page to redirect 
                     exit();
                 }

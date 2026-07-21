@@ -13,9 +13,14 @@ img{
 }
 .container{
     max-width:1200px;
-    width:100%;
     margin:0 auto;
-    padding:20px;
+    padding:0 20px;
+}
+.top-section{
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: white;
 }
 .header{
     display:flex;
@@ -25,15 +30,19 @@ img{
     flex-wrap:wrap;
     gap:16px;
 }
+.hide-header .header{
+    display: none;
+}
 .whole{
     display:flex;
     gap:12px;
     flex-wrap:wrap;
 }
 .btn{
-    padding:10px 16px;
-    border-radius: 999px;
-    background-color: #ffce00;
+    padding:10px 24px;
+    border-radius: 10px;
+    border-color: rgba(255, 255, 255, 0.4);
+    background-color: rgb(255, 229, 31);
     min-width: 120px;
     height: 48px;
     display: flex;
@@ -43,8 +52,8 @@ img{
     font-weight:700;
 }
 .btn img{
-    width:24px;
-    height:24px;
+    width:30px;
+    height:30px;
     object-fit: contain;
 }
 .btn span{
@@ -112,8 +121,34 @@ img{
     display:flex;
     gap:12px;
     align-items:center;
-
+    overflow-x:auto;
+    padding:12px 0;
+    background:#fff;
+    position:sticky;
+    top:0;
+    z-index:500;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
+
+.outline::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+.outline.hide-icons .category img{
+    opacity: 0;
+    width: 0;
+    height: 0;
+    margin: 0;
+    transition: opacity 0.3s ease, width 0.3s ease, height 0.3s ease;
+}
+
+.outline.hide-icons .category{
+    gap: 0;
+}
+
 .category{
     display:flex;
     flex-direction:column;
@@ -122,6 +157,12 @@ img{
     min-width:72px;
     gap:5px;
     cursor:pointer;
+}
+
+.category p{
+    font-size: 12px;
+    line-height: 16px;
+    transform: translateY(1px);
 }
 @media (max-width:680px){
     .outline{
@@ -137,6 +178,20 @@ img{
     margin:0;
     line-height:1.2;
 }
+.content-scroll{
+    max-height: calc(100vh - 320px);
+    overflow-y:auto;
+    padding-right: 4px;
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.content-scroll::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
 .card,
 .coupon-wrapper{
     display:flex;
@@ -179,9 +234,13 @@ img{
 }
 @media (max-width:680px){
     .btn{
-        min-width:100px;
+        width:200px;
         padding:10px 14px;
         height:44px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:8px;
     }
     .search-box{
         padding:10px 12px;
