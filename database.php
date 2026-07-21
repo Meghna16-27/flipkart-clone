@@ -7,6 +7,11 @@ class UserManager {
     private $conn;
 
     public function __construct() {
+        // Start the session so we can track logged-in state across pages
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
         mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
         try {
             $this->conn = mysqli_connect($this->db_server, $this->db_user, $this->db_password, $this->db_name);
@@ -37,23 +42,30 @@ class UserManager {
         return $exists;
     }
 
-
+    // UPDATED: Now fetches 'id' and 'password' to store in session upon success
     public function checkUser($email, $password) {
-        $query = mysqli_prepare($this->conn, "SELECT password FROM users WHERE email = ? LIMIT 1");
+        $query = mysqli_prepare($this->conn, "SELECT id, password FROM users WHERE email = ? LIMIT 1");
         mysqli_stmt_bind_param($query, "s", $email);
         mysqli_stmt_execute($query);
         
         $result = mysqli_stmt_get_result($query);
         
-        if ($user = mysqli_fetch_assoc($result)) {//fetch the query result and store in a array witha key value structure
+        if ($user = mysqli_fetch_assoc($result)) {
             mysqli_stmt_close($query);
-            return password_verify($password, $user['password']); 
+            if (password_verify($password, $user['password'])) {
+                // Save user info into session
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['user_email'] = $email;
+                return true;
+            }
+        } else {
+            mysqli_stmt_close($query);
         }
         
-        mysqli_stmt_close($query);
         return false; 
     }
 
+    // UPDATED: Saves newly registered user's ID to session
     public function insertUser($email, $password) {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
@@ -61,8 +73,13 @@ class UserManager {
         mysqli_stmt_bind_param($query, "ss", $email, $hashedPassword);
         
         $result = mysqli_stmt_execute($query);
-        mysqli_stmt_close($query);
         
+        if ($result) {
+            $_SESSION['user_id'] = mysqli_insert_id($this->conn);
+            $_SESSION['user_email'] = $email;
+        }
+
+        mysqli_stmt_close($query);
         return $result;
     }
 
@@ -77,18 +94,16 @@ class UserManager {
             }
 
             if ($this->checkEmailExists($email)) {
-           
                 if ($this->checkUser($email, $password)) {
-                    header("Location: login.php?status=loggedin");
+                    header("Location: index.php?status=loggedin");
                     exit();
                 } else {
-                    //The header() function sends an HTTP header to the browser before any HTML output is sent.(hhtp header is a extra )
-                    header("Location: login.php?status=invalid_credentials");// the header tells the browser which page to redirect 
+                    header("Location: login.php?status=invalid_credentials");
                     exit();
                 }
             } else {
                 if ($this->insertUser($email, $password)) {
-                    header("Location: login.php?status=success");
+                    header("Location: index.php?status=success");
                     exit();
                 } else {
                     header("Location: login.php?status=invalid_credentials");

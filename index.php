@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
+    <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
    <div class="container"> 
         <div class="top-section">
                 <header class="header">
@@ -36,11 +41,31 @@
                         <input type="text" placeholder="Search for Products, Brands and More">
                     </div>
                     <div class="item">
-                        <a href="login.php" class="login" style="text-decoration: none; color: inherit;">
-                            <i class="fa fa-user-o"></i>
-                            <span>Login</span>
-                            <i class="fa fa-angle-down"></i>
-                        </a>
+
+                        <?php if (isset($_SESSION['user_id'])): ?>
+                           <div class="user-dropdown">
+                            <a href="#" class="login" style="text-decoration: none; color: inherit;">
+                                <i class="fa fa-user-o"></i>
+                                <span>User</span>
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                            
+                            <!-- Dropdown Menu -->
+                            <div class="dropdown-content">
+                                <a href="profile.php"><i class="fa fa-user-circle"></i> My Profile</a>
+                                <a href="orders.php"><i class="fa fa-shopping-bag"></i> Orders</a>
+                                <a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a>
+                            </div>
+                        </div>
+                          
+
+                        <?php else: ?>
+                            <a href="login.php" class="login" style="text-decoration: none; color: inherit;">
+                                <i class="fa fa-user-o"></i>
+                                <span>Login</span>
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                        <?php endif; ?>
                         <div class="login">
                             <span>More</span>
                             <i class="fa fa-angle-down"></i>
