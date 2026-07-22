@@ -19,12 +19,6 @@ class UserManager {
         }
     }
 
-    function test_input($data) {
-        $data = trim($data);
-        $data = stripslashes($data);
-        return htmlspecialchars($data);
-    }
-
     public function checkValidate($email) {
         return (bool) filter_var($email, FILTER_VALIDATE_EMAIL);
     }
@@ -47,6 +41,7 @@ class UserManager {
         mysqli_stmt_execute($query);
         
         $result = mysqli_stmt_get_result($query);
+      
         
         if ($user = mysqli_fetch_assoc($result)) {
             mysqli_stmt_close($query);
@@ -80,51 +75,44 @@ class UserManager {
     }
 
     public function handleRequests() {
-        // Handle AJAX Email Check Request
-        if (isset($_POST['action']) && $_POST['action'] === 'check_email') {
-            header('Content-Type: application/json');
-            $email = $this->test_input($_POST['email'] ?? '');
-
-            if (!$this->checkValidate($email)) {
-                echo json_encode(['success' => false, 'message' => 'Invalid Email']);
-                exit();
-            }
-
-            $exists = $this->checkEmailExists($email);
-            echo json_encode(['success' => true, 'exists' => $exists]);
-            exit();
-        }
-
-        // Handle Main Form Submission
-        if (isset($_POST['submit'])) {
-            $email = $this->test_input($_POST['email']);
-            $password = trim($_POST['password']);
-            $action_type = isset($_POST['action_type']) ? $_POST['action_type'] : 'login';
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
+            $email = trim($_POST['email'] ?? '');
+            $password = trim($_POST['password'] ?? '');
+            $action_type = $_POST['action_type'] ?? 'login';
 
             if (empty($password) || !$this->checkValidate($email)) {
-                header("Location: login.php?status=invalid_credentials");
+                header("Location: signup.php?status=invalid_credentials");
                 exit();
             }
 
+            // LOGIN FLOW
             if ($action_type === 'login') {
+                if (!$this->checkEmailExists($email)) {
+                    // Redirect non-existent user to signup mode with pre-filled email
+                    header("Location: signup.php?status=new_user&email=" . urlencode($email));
+                    exit();
+                }
+
                 if ($this->checkUser($email, $password)) {
                     header("Location: index.php?status=loggedin");
                     exit();
                 } else {
-                    header("Location: login.php?status=invalid_credentials");
+                    header("Location: signup.php?status=invalid_credentials");
                     exit();
                 }
-            } elseif ($action_type === 'signup') {
+            } 
+            // SIGNUP FLOW
+            elseif ($action_type === 'signup') {
                 if ($this->checkEmailExists($email)) {
-                    header("Location: login.php?status=email_taken");
+                    header("Location: signup.php?status=email_taken&email=" . urlencode($email));
                     exit();
                 }
 
                 if ($this->insertUser($email, $password)) {
-                    header("Location: index.php?status=success");
+                    header("Location: index.php?status=loggedin");
                     exit();
                 } else {
-                    header("Location: login.php?status=invalid_credentials");
+                    header("Location: signup.php?status=invalid_credentials");
                     exit();
                 }
             }

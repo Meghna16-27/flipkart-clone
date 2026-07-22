@@ -204,11 +204,7 @@ img{
     cursor:pointer;
 }
 
-.category p{
-    font-size: 12px;
-    line-height: 16px;
-    transform: translateY(1px);
-}
+
 @media (max-width:680px){
     .outline{
         overflow-x:auto;
@@ -221,7 +217,10 @@ img{
 .category p{
     font-size:13px;
     margin:0;
-    line-height:1.2;
+    width:65px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space:none;
 }
 .content-scroll{
     max-height: calc(100vh - 320px); /*limit height to visible viewport minus header space*?*/

@@ -12,6 +12,8 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+$status = $_GET['status'] ?? '';
+$action = $_GET['action'] ?? (($status === 'new_user') ? 'signup' : 'login');
 ?>
    <div class="container"> 
         <div class="top-section">
@@ -57,16 +59,14 @@ if (session_status() === PHP_SESSION_NONE) {
                                 <a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a>
                                  <a href="profile.php"><i class="fa fa-user-circle"></i> My Profile</a>
                                 <a href="orders.php"><i class="fa fa-shopping-bag"></i> Orders</a>
-                                <a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a>
-                                 <a href="profile.php"><i class="fa fa-user-circle"></i> My Profile</a>
-                                <a href="orders.php"><i class="fa fa-shopping-bag"></i> Orders</a>
-                                <a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a>
+                                <a href="signup.php?action=signup"><i class="fa fa-sign-out"></i> signup</a>
+                                 
                             </div>
                         </div>
                           
 
                         <?php else: ?>
-                            <a href="login.php" class="login" style="text-decoration: none; color: inherit;">
+                            <a href="signup.php?action=login" class="login" style="text-decoration: none; color: inherit;">
                                <i class="fa fa-user-circle"></i>
                                 <span>Login</span>
                                 <i class="fa fa-angle-down"></i>
