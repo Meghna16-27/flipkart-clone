@@ -186,6 +186,8 @@ img{
     align-items:center;
     background:#fff;
     padding:4px 0px 8px 0px;
+
+    
 }
 
 .outline .category img {
@@ -238,7 +240,8 @@ img{
     margin: 0;
     max-width: 70px;
     text-overflow: ellipsis;
-    white-space: nowrap; /* Fixed invalid 'white-space: none' */
+    white-space: nowrap; 
+     overflow: hidden;    
 }
 
 /* Base Card & Coupon Section */
@@ -266,11 +269,11 @@ img{
 
 
 
-/* 1. TABLETS & SMALL LAPTOPS (<= 900px) */
-@media (max-width: 900px) {
+/* 1. TABLETS & SMALL LAPTOPS (<= 1024px) */
+@media (max-width: 1024px) {
     .container {
         padding: 0 16px;
-       overflow: hidden;
+        overflow: hidden;
     }
 
     .header {
@@ -279,7 +282,6 @@ img{
         gap: 12px;
     }
 
-    /* Stack Search above Action Items */
     .search {
         flex-direction: column;
         align-items: stretch;
@@ -292,13 +294,41 @@ img{
     }
 
     .item {
-       display: none;
+        display: none;
     }
 
     .outline {
-      
         overflow-x: scroll;
-         border-bottom:2px solid #ddd;
+        border-bottom: 2px solid #ddd;
+    }
+}
+
+/* 1A. SMALLER TABLETS / PHONES (<= 900px) */
+@media (max-width: 900px) {
+    .header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .search {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        padding: 8px 0;
+    }
+
+    .search-box {
+        width: 100%;
+    }
+
+    .item {
+        display: none;
+    }
+
+    .outline {
+        overflow-x: scroll;
+        border-bottom: 2px solid #ddd;
     }
 }
 
@@ -358,6 +388,10 @@ img{
 
     .category p {
         font-size: 11px;
+        max-width: 45px;
+         white-space: nowrap;          
+        overflow: hidden;             
+        text-overflow: ellipsis;
     }
 
     .card img {

@@ -32,7 +32,7 @@ $action = $_GET['action'] ?? (($status === 'new_user') ? 'signup' : 'login');
                         </div> 
                     </div>
                         <div class="location">
-                            <i class="fa fa-map-marker" style="font-size:24px"></i>
+                            <i class="fa fa-map-marker" aria-hidden="true" style="font-size:24px"></i>
                             <span>Location not set</span>
                             <a>Select Delivery Location</a>
                             <i class="fa fa-angle-right" style="color:blue"></i>
@@ -98,36 +98,36 @@ $action = $_GET['action'] ?? (($status === 'new_user') ? 'signup' : 'login');
                 <div class="section">
                     <!-- icon-section -->
                     <div class="outline">
-                        <div class="category">
+                        <div class="category" id="hi">
                             <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/all.svg">
                             <p>For You</p>
                         </div>
 
-                        <div class="category">
+                        <div class="category" id="smartphones">
                             <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/mobiles.svg">
                             <p>Mobiles</p>
                         </div>
 
-                        <div class="category">
+                        <div class="category" id="womens-dresses">
                             <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/fashion.svg">
                             <p>Fashion</p>
                         </div>
 
-                        <div class="category">
+                        <div class="category" id="beauty">
                             <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/beauty.svg">
                             <p>Beauty</p>
                         </div>
 
-                        <div class="category">
+                        <div class="category" id="home-decoration">
                             <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/home-final.svg">
                             <p>Home</p>
                         </div>
 
-                        <div class="category">
+                        <div class="category" id="laptops">
                             <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/electronics.svg">
                             <p>Electronics</p>
                         </div>
-                        <div class="category">
+                        <div class="category" id="mobile-accessories">
                             <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/tv.svg">
                             <p>Applications</p>
                         </div>
@@ -135,7 +135,7 @@ $action = $_GET['action'] ?? (($status === 'new_user') ? 'signup' : 'login');
                             <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/toy.svg">
                             <p>Toys,baby</p>
                         </div>
-                        <div class="category">
+                        <div class="category" id="groceries">
                             <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/food.svg">
                             <p>Food &Health</p>
                         </div>
@@ -147,7 +147,7 @@ $action = $_GET['action'] ?? (($status === 'new_user') ? 'signup' : 'login');
                             <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/sport.svg">
                             <p>sports&Fit</p>
                         </div>
-                        <div class="category">
+                        <div class="category"id="furniture">
                             <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/furniture.svg">
                             <p>furniture</p>
                         </div>
@@ -182,6 +182,9 @@ $action = $_GET['action'] ?? (($status === 'new_user') ? 'signup' : 'login');
     </div>
    <?php
         include "footer.php";
+    ?>
+    <?php
+    include "mobilebar.php";
     ?>
     
     <script src="index.js"> </script>

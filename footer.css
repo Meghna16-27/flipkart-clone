@@ -166,17 +166,19 @@
 }
 
 /* Responsive Design */
-@media (max-width: 900px) {
-  .footer-divider {
-    display: none;
-  }
-  
-  .footer-col {
-    min-width: 45%;
-  }
+@media (max-width: 1400px) {
+.site-footer{
+  display: none;
+}
+}
 
-  .footer-bottom-container {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+@media (max-width: 900px) {
+.site-footer{
+  display: none;
+}
+}
+@media (max-width: 680px) {
+.site-footer{
+  display: none;
+}
 }

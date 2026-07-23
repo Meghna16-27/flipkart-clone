@@ -116,6 +116,9 @@ $action = $_GET['action'] ?? (($status === 'new_user') ? 'signup' : 'login');
       <?php
         include "footer.php";
       ?>
+      <?php
+        include "mobilebar.php";
+      ?>
     <!-- footer -->
 
 
