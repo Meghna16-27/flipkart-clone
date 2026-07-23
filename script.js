@@ -49,7 +49,7 @@ async function fetchAndDisplayProducts(categoryId) {
 
   } catch (error) {
     console.error("Error loading products:", error);
-    container.innerHTML = "<p style='color:red;'>Failed to load products.</p>";
+    container.innerHTML = "<p style='color:red;'>no productsinside this category.</p>";
   }
 }
 
