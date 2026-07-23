@@ -6,8 +6,12 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
 </head>
 <body>
+     
     <?php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -16,7 +20,6 @@ $status = $_GET['status'] ?? '';
 $action = $_GET['action'] ?? (($status === 'new_user') ? 'signup' : 'login');
 ?>
    <div class="container"> 
-        <div class="top-section">
                 <header class="header">
                     <div class="whole">
                         <div class="btn">
@@ -33,9 +36,9 @@ $action = $_GET['action'] ?? (($status === 'new_user') ? 'signup' : 'login');
                             <span>Location not set</span>
                             <a>Select Delivery Location</a>
                             <i class="fa fa-angle-right" style="color:blue"></i>
-                        </div>  
+                        </div>         
 
-                </header>  
+                
              <!-- searchbar -->
                 <div class="search">
                     <div class="search-box">
@@ -59,18 +62,25 @@ $action = $_GET['action'] ?? (($status === 'new_user') ? 'signup' : 'login');
                                 <a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a>
                                  <a href="profile.php"><i class="fa fa-user-circle"></i> My Profile</a>
                                 <a href="orders.php"><i class="fa fa-shopping-bag"></i> Orders</a>
-                                <a href="signup.php?action=signup"><i class="fa fa-sign-out"></i> signup</a>
                                  
                             </div>
                         </div>
                           
 
                         <?php else: ?>
+                          <div class="user-dropdown">   
                             <a href="signup.php?action=login" class="login" style="text-decoration: none; color: inherit;">
-                               <i class="fa fa-user-circle"></i>
+                                <i class="fa fa-user-circle"></i>
                                 <span>Login</span>
                                 <i class="fa fa-angle-down"></i>
                             </a>
+                            <div class="dropdown-content">
+                                <a href="signup.php?action=signup"><i class="fa fa-sign-out"></i> signup</a>
+                                <a href="#"><i class="fa fa-sign-out"></i> 24*7 Delivery</a>
+                                <a href="#"><i class="fa fa-sign-out"></i> Gift Cards</a>
+                                    
+                            </div>
+                        </div>   
                         <?php endif; ?>
                         <div class="login">
                             <span>More</span>
@@ -79,92 +89,101 @@ $action = $_GET['action'] ?? (($status === 'new_user') ? 'signup' : 'login');
                         <div class="login">
                             <i class="fa fa-shopping-cart"></i>
                             <span>Cart</span>
-                            <i class="fa fa-angle-down"></i>
                         </div>
 
                     </div>
 
                 </div>
 
-            <div class="section">
-                <!-- icon-section -->
-                <div class="outline">
-                    <div class="category">
-                        <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/all.svg">
-                        <p>For You</p>
-                    </div>
+                <div class="section">
+                    <!-- icon-section -->
+                    <div class="outline">
+                        <div class="category">
+                            <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/all.svg">
+                            <p>For You</p>
+                        </div>
 
-                    <div class="category">
-                        <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/mobiles.svg">
-                        <p>Mobiles</p>
-                    </div>
+                        <div class="category">
+                            <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/mobiles.svg">
+                            <p>Mobiles</p>
+                        </div>
 
-                    <div class="category">
-                        <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/fashion.svg">
-                        <p>Fashion</p>
-                    </div>
+                        <div class="category">
+                            <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/fashion.svg">
+                            <p>Fashion</p>
+                        </div>
 
-                    <div class="category">
-                        <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/beauty.svg">
-                        <p>Beauty</p>
-                    </div>
+                        <div class="category">
+                            <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/beauty.svg">
+                            <p>Beauty</p>
+                        </div>
 
-                    <div class="category">
-                        <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/home-final.svg">
-                        <p>Home</p>
-                    </div>
+                        <div class="category">
+                            <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/home-final.svg">
+                            <p>Home</p>
+                        </div>
 
-                    <div class="category">
-                        <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/electronics.svg">
-                        <p>Electronics</p>
+                        <div class="category">
+                            <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/electronics.svg">
+                            <p>Electronics</p>
+                        </div>
+                        <div class="category">
+                            <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/tv.svg">
+                            <p>Applications</p>
+                        </div>
+                        <div class="category">
+                            <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/toy.svg">
+                            <p>Toys,baby</p>
+                        </div>
+                        <div class="category">
+                            <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/food.svg">
+                            <p>Food &Health</p>
+                        </div>
+                        <div class="category">
+                            <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/auto-acc.svg">
+                            <p>Auto access</p>
+                        </div>
+                        <div class="category">
+                            <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/sport.svg">
+                            <p>sports&Fit</p>
+                        </div>
+                        <div class="category">
+                            <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/furniture.svg">
+                            <p>furniture</p>
+                        </div>
+                        <div class="category">
+                            <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/books.svg">
+                            <p>Books</p>
+                        </div>
+                        <div class="category">
+                            <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/auto-new.svg">
+                            <p>2 wheeler</p>
+                        </div>
                     </div>
-                    <div class="category">
-                        <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/tv.svg">
-                        <p>Applications</p>
-                    </div>
-                    <div class="category">
-                        <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/toy.svg">
-                        <p>Toys,baby</p>
-                    </div>
-                    <div class="category">
-                        <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/food.svg">
-                        <p>Food &Health</p>
-                    </div>
-                    <div class="category">
-                        <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/auto-acc.svg">
-                        <p>Auto access</p>
-                    </div>
-                    <div class="category">
-                        <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/sport.svg">
-                        <p>sports&Fit</p>
-                    </div>
-                    <div class="category">
-                        <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/furniture.svg">
-                        <p>furniture</p>
-                    </div>
-                    <div class="category">
-                        <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/books.svg">
-                        <p>Books</p>
-                    </div>
-                    <div class="category">
-                        <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/auto-new.svg">
-                        <p>2 wheeler</p>
-                    </div>
-                </div>
+                </div>    
+            </header> 
 
-                <div class="content-scroll">
+
+                <div class="page-content">
                     <!-- couponsection -->
                     <div class="coupon-wrapper">
                         <img src="assests/coupons.png" alt="coupon">
                     </div>
                     <div class="card">
-                        <img src="assests/cards.png" alt="card1">
-                        <img src="assests/cards.png" alt="card2">
+                      <?php 
+                      include "swiper.php";
+                      ?>
                     </div>
                 </div>
-            </div>
-          </div>  
+            
+            <?php
+            include "category.php";
+            ?>
     </div>
+   <?php
+        include "footer.php";
+    ?>
+    
     <script src="index.js"> </script>
 </body>
 </html>

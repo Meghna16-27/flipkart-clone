@@ -66,7 +66,8 @@ class UserManager {
         $result = mysqli_stmt_execute($query);
         
         if ($result) {
-            $_SESSION['user_id'] = mysqli_insert_id($this->conn);
+          
+        
             $_SESSION['user_email'] = $email;
         }
 
